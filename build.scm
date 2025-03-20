@@ -1,7 +1,3 @@
-#!/run/current-system/sw/bin/guile \
---no-auto-compile -s
-!#
-
 (use-modules (ice-9 popen)
              (ice-9 rdelim)
              (ice-9 format))
