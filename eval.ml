@@ -36,6 +36,15 @@ let rec eval st tokens =
           | "!" -> (match pop2 st with Some (addr, v) -> set_memory st addr v | None -> ())
           | "," -> push st (get_mem_addr st); next_mem_addr st
           | "words" -> Hashtbl.iter (fun k _ -> print_endline k) (get_words st)
+          | ">" -> (match pop2 st with 
+                    | Some (a, b) -> if a > b then push st 1 else push st 0
+                    | None -> ())
+          | "<" -> (match pop2 st with 
+                    | Some (a, b) -> if a < b then push st 1 else push st 0
+                    | None -> ())
+          | "=" -> (match pop2 st with 
+                    | Some (a, b) -> if a = b then push st 1 else push st 0
+                    | None -> ())
           | _ -> (try push st (int_of_string word) with Failure _ -> print_endline ("Unknown word: " ^ word))
       );
       eval st rest
