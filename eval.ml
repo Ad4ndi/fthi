@@ -12,6 +12,7 @@ let rec eval st tokens =
       let body_code, rest = get_body [] body in
       Hashtbl.add (get_words st) name body_code;
       eval st rest
+  | word :: rest when word = "" -> eval st rest
   | word :: rest ->
       (match Hashtbl.find_opt (get_words st) word with
       | Some body -> eval st (body @ rest)
