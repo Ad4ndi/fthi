@@ -6,7 +6,7 @@ let repl () =
   print_endline "Forth REPL. Type 'exit' to quit.";
   try
     while true do
-      print_string " > ";
+      print_string " ! ";
       flush stdout;
       let line = read_line () in
       if line = "exit" then (print_endline "Bye!"; exit 0);
